@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="crazycolaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Almacen">
+          <Key>
+            <PropertyRef Name="AlmacenId" />
+          </Key>
+          <Property Name="AlmacenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="CiudadId" Type="int" />
+        </EntityType>
+        <EntityType Name="AlmacenProducto">
+          <Key>
+            <PropertyRef Name="AlmacenProductoId" />
+          </Key>
+          <Property Name="AlmacenProductoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AlmacenId" Type="int" />
+          <Property Name="ProductoId" Type="int" />
+          <Property Name="Stock" Type="int" />
+        </EntityType>
+        <EntityType Name="Ciudad">
+          <Key>
+            <PropertyRef Name="CiudadId" />
+          </Key>
+          <Property Name="CiudadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="PaisId" Type="int" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="PaisId" />
+          </Key>
+          <Property Name="PaisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="CodigoIso" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="ProductoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Contrasenia" Type="varchar" MaxLength="500" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="AlmacenId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Almacen__CiudadI__29572725">
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="0..1" />
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="CiudadId" />
+            </Principal>
+            <Dependent Role="Almacen">
+              <PropertyRef Name="CiudadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AlmacenPr__Almac__30F848ED">
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="0..1" />
+          <End Role="AlmacenProducto" Type="Self.AlmacenProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Almacen">
+              <PropertyRef Name="AlmacenId" />
+            </Principal>
+            <Dependent Role="AlmacenProducto">
+              <PropertyRef Name="AlmacenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AlmacenPr__Produ__31EC6D26">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="AlmacenProducto" Type="Self.AlmacenProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ProductoId" />
+            </Principal>
+            <Dependent Role="AlmacenProducto">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ciudad__PaisId__267ABA7A">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="PaisId" />
+            </Principal>
+            <Dependent Role="Ciudad">
+              <PropertyRef Name="PaisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Almacen__2C3393D0">
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Almacen">
+              <PropertyRef Name="AlmacenId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="AlmacenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="crazycolaModelStoreContainer">
+          <EntitySet Name="Almacen" EntityType="Self.Almacen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlmacenProducto" EntityType="Self.AlmacenProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Almacen__CiudadI__29572725" Association="Self.FK__Almacen__CiudadI__29572725">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Almacen" EntitySet="Almacen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AlmacenPr__Almac__30F848ED" Association="Self.FK__AlmacenPr__Almac__30F848ED">
+            <End Role="Almacen" EntitySet="Almacen" />
+            <End Role="AlmacenProducto" EntitySet="AlmacenProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AlmacenPr__Produ__31EC6D26" Association="Self.FK__AlmacenPr__Produ__31EC6D26">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="AlmacenProducto" EntitySet="AlmacenProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ciudad__PaisId__267ABA7A" Association="Self.FK__Ciudad__PaisId__267ABA7A">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Ciudad" EntitySet="Ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Almacen__2C3393D0" Association="Self.FK__Usuario__Almacen__2C3393D0">
+            <End Role="Almacen" EntitySet="Almacen" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="crazycolaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Almacen">
+          <Key>
+            <PropertyRef Name="AlmacenId" />
+          </Key>
+          <Property Name="AlmacenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CiudadId" Type="Int32" />
+          <NavigationProperty Name="Ciudad" Relationship="Self.FK__Almacen__CiudadI__29572725" FromRole="Almacen" ToRole="Ciudad" />
+          <NavigationProperty Name="AlmacenProducto" Relationship="Self.FK__AlmacenPr__Almac__30F848ED" FromRole="Almacen" ToRole="AlmacenProducto" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__Almacen__2C3393D0" FromRole="Almacen" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="AlmacenProducto">
+          <Key>
+            <PropertyRef Name="AlmacenProductoId" />
+          </Key>
+          <Property Name="AlmacenProductoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AlmacenId" Type="Int32" />
+          <Property Name="ProductoId" Type="Int32" />
+          <Property Name="Stock" Type="Int32" />
+          <NavigationProperty Name="Almacen" Relationship="Self.FK__AlmacenPr__Almac__30F848ED" FromRole="AlmacenProducto" ToRole="Almacen" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__AlmacenPr__Produ__31EC6D26" FromRole="AlmacenProducto" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Ciudad">
+          <Key>
+            <PropertyRef Name="CiudadId" />
+          </Key>
+          <Property Name="CiudadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PaisId" Type="Int32" />
+          <NavigationProperty Name="Almacen" Relationship="Self.FK__Almacen__CiudadI__29572725" FromRole="Ciudad" ToRole="Almacen" />
+          <NavigationProperty Name="Pais" Relationship="Self.FK__Ciudad__PaisId__267ABA7A" FromRole="Ciudad" ToRole="Pais" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="PaisId" />
+          </Key>
+          <Property Name="PaisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoIso" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ciudad" Relationship="Self.FK__Ciudad__PaisId__267ABA7A" FromRole="Pais" ToRole="Ciudad" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="ProductoId" />
+          </Key>
+          <Property Name="ProductoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="AlmacenProducto" Relationship="Self.FK__AlmacenPr__Produ__31EC6D26" FromRole="Producto" ToRole="AlmacenProducto" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasenia" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="AlmacenId" Type="Int32" />
+          <NavigationProperty Name="Almacen" Relationship="Self.FK__Usuario__Almacen__2C3393D0" FromRole="Usuario" ToRole="Almacen" />
+        </EntityType>
+        <Association Name="FK__Almacen__CiudadI__29572725">
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="0..1" />
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="CiudadId" />
+            </Principal>
+            <Dependent Role="Almacen">
+              <PropertyRef Name="CiudadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AlmacenPr__Almac__30F848ED">
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="0..1" />
+          <End Role="AlmacenProducto" Type="Self.AlmacenProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Almacen">
+              <PropertyRef Name="AlmacenId" />
+            </Principal>
+            <Dependent Role="AlmacenProducto">
+              <PropertyRef Name="AlmacenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Almacen__2C3393D0">
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Almacen">
+              <PropertyRef Name="AlmacenId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="AlmacenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AlmacenPr__Produ__31EC6D26">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="AlmacenProducto" Type="Self.AlmacenProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ProductoId" />
+            </Principal>
+            <Dependent Role="AlmacenProducto">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ciudad__PaisId__267ABA7A">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="0..1" />
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="PaisId" />
+            </Principal>
+            <Dependent Role="Ciudad">
+              <PropertyRef Name="PaisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="crazycolaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Almacen" EntityType="Self.Almacen" />
+          <EntitySet Name="AlmacenProducto" EntityType="Self.AlmacenProducto" />
+          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__Almacen__CiudadI__29572725" Association="Self.FK__Almacen__CiudadI__29572725">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Almacen" EntitySet="Almacen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AlmacenPr__Almac__30F848ED" Association="Self.FK__AlmacenPr__Almac__30F848ED">
+            <End Role="Almacen" EntitySet="Almacen" />
+            <End Role="AlmacenProducto" EntitySet="AlmacenProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Almacen__2C3393D0" Association="Self.FK__Usuario__Almacen__2C3393D0">
+            <End Role="Almacen" EntitySet="Almacen" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AlmacenPr__Produ__31EC6D26" Association="Self.FK__AlmacenPr__Produ__31EC6D26">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="AlmacenProducto" EntitySet="AlmacenProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ciudad__PaisId__267ABA7A" Association="Self.FK__Ciudad__PaisId__267ABA7A">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Ciudad" EntitySet="Ciudad" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="crazycolaModelStoreContainer" CdmEntityContainer="crazycolaEntities">
+          <EntitySetMapping Name="Almacen">
+            <EntityTypeMapping TypeName="crazycolaModel.Almacen">
+              <MappingFragment StoreEntitySet="Almacen">
+                <ScalarProperty Name="AlmacenId" ColumnName="AlmacenId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="CiudadId" ColumnName="CiudadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlmacenProducto">
+            <EntityTypeMapping TypeName="crazycolaModel.AlmacenProducto">
+              <MappingFragment StoreEntitySet="AlmacenProducto">
+                <ScalarProperty Name="AlmacenProductoId" ColumnName="AlmacenProductoId" />
+                <ScalarProperty Name="AlmacenId" ColumnName="AlmacenId" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ciudad">
+            <EntityTypeMapping TypeName="crazycolaModel.Ciudad">
+              <MappingFragment StoreEntitySet="Ciudad">
+                <ScalarProperty Name="CiudadId" ColumnName="CiudadId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PaisId" ColumnName="PaisId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pais">
+            <EntityTypeMapping TypeName="crazycolaModel.Pais">
+              <MappingFragment StoreEntitySet="Pais">
+                <ScalarProperty Name="PaisId" ColumnName="PaisId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodigoIso" ColumnName="CodigoIso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="crazycolaModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="crazycolaModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="AlmacenId" ColumnName="AlmacenId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

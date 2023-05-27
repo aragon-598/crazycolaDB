@@ -1,0 +1,48 @@
+﻿@model crazycola.Models.Usuario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <table class="table table-bordered">
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Nombre)</td>
+            <td>@Html.DisplayFor(model => model.Nombre)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Apellido)</td>
+            <td>@Html.DisplayFor(model => model.Apellido)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Email)</td>
+            <td>@Html.DisplayFor(model => model.Email)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Contrasenia)</td>
+            <td>@Html.DisplayFor(model => model.Contrasenia)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.IsAdmin)</td>
+            <td>@Html.DisplayFor(model => model.IsAdmin)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Almacen.Nombre)</td>
+            <td>@Html.DisplayFor(model => model.Almacen.Nombre)</td>
+        </tr>
+    </table>
+</div>
+
+<p>
+    <a href="@Url.Action("Edit", new { id = Model.UsuarioId })" class="btn btn-primary">
+        <i class="fas fa-edit"></i> Edit
+    </a> |
+    <a href="@Url.Action("Index")" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to List
+    </a>
+</p>

@@ -1,0 +1,36 @@
+﻿@model crazycola.Models.Almacen
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <td>@Html.DisplayFor(model => model.Nombre)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Direccion)</th>
+                <td>@Html.DisplayFor(model => model.Direccion)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Ciudad.Nombre)</th>
+                <td>@Html.DisplayFor(model => model.Ciudad.Nombre)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p>
+    <a href="@Url.Action("Edit", new { id = Model.AlmacenId })" class="btn btn-primary">
+        <i class="fas fa-edit"></i> Edit
+    </a>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">
+        <i class="fas fa-list"></i> Back to List
+    </a>
+</p>

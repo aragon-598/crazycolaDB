@@ -1,0 +1,53 @@
+﻿@model IEnumerable<crazycola.Models.Almacen>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Almacenes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ciudad.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciudad.Nombre)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.AlmacenId })" class="btn btn-primary">
+                    <i class="fa fa-edit"></i> Edit
+                </a>
+                <a href="@Url.Action("Details", new { id = item.AlmacenId })" class="btn btn-info">
+                    <i class="fa fa-eye"></i> Details
+                </a>
+                <a href="@Url.Action("Delete", new { id = item.AlmacenId })" class="btn btn-danger">
+                    <i class="fa fa-trash"></i> Delete
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

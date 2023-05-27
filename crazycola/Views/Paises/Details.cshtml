@@ -1,0 +1,36 @@
+﻿@model crazycola.Models.Pais
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5">
+    <h2>Details</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                    <td>@Html.DisplayFor(model => model.Nombre)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.CodigoIso)</th>
+                    <td>@Html.DisplayFor(model => model.CodigoIso)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <a href="@Url.Action("Edit", new { id = Model.PaisId })" class="btn btn-primary">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cdfad8fa21c94e4b8b602b7851b3a5df" Name="Diagram1">
+        <EntityTypeShape EntityType="crazycolaModel.Almacen" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="crazycolaModel.AlmacenProducto" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="crazycolaModel.Ciudad" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="crazycolaModel.Pais" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="crazycolaModel.Producto" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="crazycolaModel.Usuario" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
+        <AssociationConnector Association="crazycolaModel.FK__Almacen__CiudadI__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="crazycolaModel.FK__AlmacenPr__Almac__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="crazycolaModel.FK__Usuario__Almacen__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="crazycolaModel.FK__AlmacenPr__Produ__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="crazycolaModel.FK__Ciudad__PaisId__267ABA7A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

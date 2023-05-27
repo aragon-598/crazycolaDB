@@ -1,0 +1,50 @@
+﻿@model IEnumerable<crazycola.Models.Ciudad>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Create New
+    </a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pais.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pais.Nombre)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.CiudadId })" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <a href="@Url.Action("Details", new { id = item.CiudadId })" class="btn btn-info">
+                    <i class="fas fa-info-circle"></i> Details
+                </a>
+                <a href="@Url.Action("Delete", new { id = item.CiudadId })" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

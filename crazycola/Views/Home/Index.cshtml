@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Menu</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-store"></i> Almacenes
+                    </h5>
+                    <p class="card-text">Administra los almacenes</p>
+                    <a href="@Url.Action("Index", "Almacenes")" class="btn btn-primary">Ir a Almacenes</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-conveyor-belt-arm"></i> Productos
+                    </h5>
+                    <p class="card-text">Administra los productos</p>
+                    <a href="@Url.Action("Index", "Productos")" class="btn btn-primary">Ir a Productos</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-users"></i> Usuarios
+                    </h5>
+                    <p class="card-text">Administra los usuarios</p>
+                    <a href="@Url.Action("Index", "Usuarios")" class="btn btn-primary">Ir a Usuarios</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fas fa-warehouse"></i> AlmacenProducto
+                    </h5>
+                    <p class="card-text">Administra los productos en el almacén</p>
+                    <a href="@Url.Action("Index", "AlmacenProductos")" class="btn btn-primary">Ir a AlmacenProducto</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
