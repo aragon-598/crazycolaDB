@@ -1,68 +1,66 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@{ ViewBag.Title = "Home Page";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
 
-<div class="container">
-    <h2>Menu</h2>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="fas fa-store"></i> Almacenes
-                    </h5>
+<style>
+    .card:hover {
+        transform: scale(1.02);
+        transition: all .2s ease-in-out;
+    }
+</style>
+<div class="container mt-5">
+    <fieldset>
+        <legend> User DashBoard </legend>
+
+        @if (Session["UsuarioId"] != null)
+        {
+    <text> Welcome @Session["UsuarioId"] .ToString() </text>}
+    </fieldset>
+
+        <h2 class="text-center mb-5">Menu</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm text-center p-4">
+                    <i class="fas fa-store fa-3x mb-3"></i>
+                    <h5 class="card-title">Almacenes</h5>
                     <p class="card-text">Administra los almacenes</p>
                     <a href="@Url.Action("Index", "Almacenes")" class="btn btn-primary">Ir a Almacenes</a>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-3">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="fa-regular fa-conveyor-belt-arm"></i> Productos
-                    </h5>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm text-center p-4">
+                    <i class="fas fa-conveyor-belt fa-3x mb-3"></i>
+                    <h5 class="card-title">Productos</h5>
                     <p class="card-text">Administra los productos</p>
                     <a href="@Url.Action("Index", "Productos")" class="btn btn-primary">Ir a Productos</a>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-3">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="fas fa-users"></i> Usuarios
-                    </h5>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm text-center p-4">
+                    <i class="fas fa-users fa-3x mb-3"></i>
+                    <h5 class="card-title">Usuarios</h5>
                     <p class="card-text">Administra los usuarios</p>
                     <a href="@Url.Action("Index", "Usuarios")" class="btn btn-primary">Ir a Usuarios</a>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-3">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="fas fa-warehouse"></i> AlmacenProducto
-                    </h5>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm text-center p-4">
+                    <i class="fas fa-warehouse fa-3x mb-3"></i>
+                    <h5 class="card-title">AlmacenProducto</h5>
                     <p class="card-text">Administra los productos en el almacén</p>
                     <a href="@Url.Action("Index", "AlmacenProductos")" class="btn btn-primary">Ir a AlmacenProducto</a>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="fas fa-warehouse"></i> Administrar locaciones
-                    </h5>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm text-center p-4">
+                    <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
+                    <h5 class="card-title">Administrar locaciones</h5>
                     <p class="card-text">Administra las locaciones de crazycola</p>
                     <a href="@Url.Action("Index", "Ciudades")" class="btn btn-primary">Ir a locaciones</a>
                 </div>
             </div>
         </div>
     </div>
-</div>

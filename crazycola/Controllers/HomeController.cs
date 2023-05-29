@@ -10,6 +10,8 @@ namespace crazycola.Controllers
     {
         public ActionResult Index()
         {
+            //string mensaje = "Hola desde ASP.NET";
+            ViewBag.Mensaje = Session["UsuarioId"];
             return View();
         }
 
