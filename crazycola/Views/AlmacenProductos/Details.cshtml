@@ -7,37 +7,30 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>AlmacenProducto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Almacen.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Almacen.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Producto.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Producto.Nombre)
-        </dd>
-
-    </dl>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Stock)</th>
+                <td>@Html.DisplayFor(model => model.Stock)</td>
+            </tr>
+            <tr>
+                <th>Almacen</th>
+                <td>@Html.DisplayFor(model => model.Almacen.Nombre)</td>
+            </tr>
+            <tr>
+                <th>Producto</th>
+                <td>@Html.DisplayFor(model => model.Producto.Nombre)</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AlmacenProductoId }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Edit", new { id = Model.AlmacenProductoId })" class="btn btn-primary">
+        <i class="fas fa-edit"></i> Edit
+    </a>
+    <a href="@Url.Action("Index")" class="btn btn-default">
+        <i class="fas fa-arrow-left"></i> Back to List
+    </a>
 </p>
