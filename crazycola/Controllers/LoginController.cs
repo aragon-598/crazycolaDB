@@ -17,7 +17,7 @@ namespace crazycola.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Usuario objUser)
+        public ActionResult Index(Usuario objUser)
         {
             Console.WriteLine("ANTES DEL IFFFFFFFFFFF");
 
@@ -31,7 +31,7 @@ namespace crazycola.Controllers
                     Console.WriteLine("ENTREEEEE AL IFFFFFFFFFFFFFFFFF");
                         Session["UsuarioId"] = obj.UsuarioId.ToString();
                         Session["Email"] = obj.Email.ToString();
-                        return RedirectToAction("About","HomeController");
+                        return RedirectToAction("Index","Home");
                     }
                 
             }
