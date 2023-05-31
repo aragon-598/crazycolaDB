@@ -9,9 +9,14 @@ namespace crazycola.Controllers
 {
     public class LoginController : Controller
     {
+        
         // GET: Login
         public ActionResult Index()
         {
+            if (Session["UsuarioId"]!=null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -20,7 +25,8 @@ namespace crazycola.Controllers
         public ActionResult Index(Usuario objUser)
         {
             Console.WriteLine("ANTES DEL IFFFFFFFFFFF");
-
+            try
+            {
                 using (crazycolaEntities db = new crazycolaEntities())
                 {
                     var obj = db.Usuario.Where(a => a.Email.Equals(objUser.Email) && a.Contrasenia.Equals(objUser.Contrasenia)).FirstOrDefault();
@@ -28,7 +34,7 @@ namespace crazycola.Controllers
                     Content("HOLA");
                     if (obj != null)
                     {
-                    Console.WriteLine("ENTREEEEE AL IFFFFFFFFFFFFFFFFF");
+                        Console.WriteLine("ENTREEEEE AL IFFFFFFFFFFFFFFFFF");
                         Session["UsuarioId"] = obj.UsuarioId.ToString();
                         Session["UNombre"] = obj.Nombre.ToString();
                         Session["UApellido"] = obj.Apellido.ToString();
@@ -37,14 +43,26 @@ namespace crazycola.Controllers
                         return RedirectToAction("Index","Home");
                     }
                 
+                }
             }
-            Console.WriteLine("SIN ENTRAR AL IFFFFFFFFFFF");
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            string mensaje = "Credenciales incorrectas, vuelve a intentarlo";
+            ViewBag.Mensaje = mensaje;
             return View(objUser);
         }
 
         public ActionResult Logout()
         {
             Session.Clear();
+            if (Session["UsuarioId"]!=null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
     }

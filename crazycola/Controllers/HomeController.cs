@@ -10,12 +10,13 @@ namespace crazycola.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Mensaje = null;
             if (Session["UsuarioId"]==null)
             {
                 return RedirectToAction("Index", "Login");
             }
             //string mensaje = "Hola desde ASP.NET";
-            ViewBag.Mensaje = Session["UsuarioId"];
+            //ViewBag.Mensaje = Session["UsuarioId"];
             return View();
         }
 
