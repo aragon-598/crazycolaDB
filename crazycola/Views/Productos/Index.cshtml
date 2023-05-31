@@ -14,39 +14,48 @@
 
     <div class="row mt-3">
         <div class="col-md-12">
-            <a href="@Url.Action("Create")" class="btn btn-primary mb-3">
-                <i class="fa fa-plus"></i> Create New
-            </a>
+             @if (@Session["UAdmin"] == "true")
+             {
+                 <a href="@Url.Action("Create")" class="btn btn-primary mb-3">
+                     <i class="fa fa-plus"></i> Create New
+                 </a>
+             }
 
             <table class="table table-striped table-bordered">
                 <thead>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Nombre)</th>
-                        <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
-                        <th>@Html.DisplayNameFor(model => model.Precio)</th>
-                        <th>Actions</th>
-                    </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                    <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+                    <th>@Html.DisplayNameFor(model => model.Precio)</th>
+                    <th>Actions</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Precio)</td>
-                            <td>
-                                <a href="@Url.Action("Edit", new { id = item.ProductoId })" class="btn btn-warning btn-sm">
-                                    <i class="fa fa-edit"></i> Edit
-                                </a>
-                                <a href="@Url.Action("Details", new { id = item.ProductoId })" class="btn btn-info btn-sm">
-                                    <i class="fa fa-info-circle"></i> Details
-                                </a>
-                                <a href="@Url.Action("Delete", new { id = item.ProductoId })" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i> Delete
-                                </a>
-                            </td>
-                        </tr>
-                    }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Precio)</td>
+                        <td>
+                             @if (@Session["UAdmin"] == "true")
+                             {
+                                 <a href="@Url.Action("Edit", new { id = item.ProductoId })" class="btn btn-warning btn-sm">
+                                     <i class="fa fa-edit"></i> Edit
+                                 </a>
+                             }
+                             <a href="@Url.Action("Details", new { id = item.ProductoId })" class="btn btn-info btn-sm">
+                                 <i class="fa fa-info-circle"></i> Details
+                             </a>
+                              @if (@Session["UAdmin"] == "true")
+                              {
+                                  <a href="@Url.Action("Delete", new { id = item.ProductoId })" class="btn btn-danger btn-sm">
+                                      <i class="fa fa-trash"></i> Delete
+                                  </a>
+                              }
+                        </td>
+                    </tr>
+                }
                 </tbody>
             </table>
         </div>

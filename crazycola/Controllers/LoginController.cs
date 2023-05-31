@@ -30,7 +30,10 @@ namespace crazycola.Controllers
                     {
                     Console.WriteLine("ENTREEEEE AL IFFFFFFFFFFFFFFFFF");
                         Session["UsuarioId"] = obj.UsuarioId.ToString();
-                        Session["Email"] = obj.Email.ToString();
+                        Session["UNombre"] = obj.Nombre.ToString();
+                        Session["UApellido"] = obj.Apellido.ToString();
+                        Session["UAlmacenId"] = obj.Almacen.AlmacenId.ToString();
+                        Session["UAdmin"] = obj.IsAdmin.ToString();
                         return RedirectToAction("Index","Home");
                     }
                 

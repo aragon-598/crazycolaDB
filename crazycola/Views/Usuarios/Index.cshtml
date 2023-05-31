@@ -6,10 +6,12 @@
 }
 
 <h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
-</p>
+ @if (@Session["UAdmin"] == "true")
+ {
+     <p>
+         @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+     </p>
+ }
 <table class="table">
     <tr>
         <th>
@@ -43,17 +45,22 @@
                 @Html.DisplayFor(modelItem => item.Almacen.Nombre)
             </td>
             <td>
-                <a href="@Url.Action("Edit", new { id = item.UsuarioId })" class="btn btn-primary">
-                    <i class="fas fa-edit"></i> Edit
-                </a>
-                |
-                <a href="@Url.Action("Details", new { id = item.UsuarioId })" class="btn btn-info">
-                    <i class="fas fa-info-circle"></i> Details
-                </a>
-                |
-                <a href="@Url.Action("Delete", new { id = item.UsuarioId })" class="btn btn-danger">
-                    <i class="fas fa-trash-alt"></i> Delete
-                </a>
+                 @if (Session["UAdmin"] == "true" || Session["UsuarioId"].Equals(item.UsuarioId.ToString()))
+                 {
+                     <a href="@Url.Action("Edit", new { id = item.UsuarioId })" class="btn btn-primary">
+                         <i class="fas fa-edit"></i> Edit
+                     </a>
+
+                     <a href="@Url.Action("Details", new { id = item.UsuarioId })" class="btn btn-info">
+                         <i class="fas fa-info-circle"></i> Details
+                     </a>
+                 }
+                 @if (@Session["UAdmin"] == "true")
+                 {
+                     <a href="@Url.Action("Delete", new { id = item.UsuarioId })" class="btn btn-danger">
+                         <i class="fas fa-trash-alt"></i> Delete
+                     </a>
+                 }
             </td>
         </tr>
     }

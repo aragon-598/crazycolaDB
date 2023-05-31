@@ -13,7 +13,7 @@
 
         @if (Session["UsuarioId"] != null)
         {
-    <text> Welcome @Session["UsuarioId"] .ToString() </text>}
+    <text> Welcome @Session["UNombre"].ToString() @Session["UApellido"] </text>}
     </fieldset>
 
         <h2 class="text-center mb-5">Menu</h2>
@@ -53,14 +53,16 @@
                     <a href="@Url.Action("Index", "AlmacenProductos")" class="btn btn-primary">Ir a AlmacenProducto</a>
                 </div>
             </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm text-center p-4">
-                    <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
-                    <h5 class="card-title">Administrar locaciones</h5>
-                    <p class="card-text">Administra las locaciones de crazycola</p>
-                    <a href="@Url.Action("Index", "Ciudades")" class="btn btn-primary">Ir a locaciones</a>
-                </div>
-            </div>
+             @if (@Session["UAdmin"] == "true")
+             {
+                 <div class="col-md-4 mb-4">
+                     <div class="card h-100 shadow-sm text-center p-4">
+                         <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
+                         <h5 class="card-title">Administrar locaciones</h5>
+                         <p class="card-text">Administra las locaciones de crazycola</p>
+                         <a href="@Url.Action("Index", "Ciudades")" class="btn btn-primary">Ir a locaciones</a>
+                     </div>
+                 </div>
+             }
         </div>
     </div>

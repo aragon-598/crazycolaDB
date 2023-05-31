@@ -39,9 +39,12 @@
 </div>
 
 <p>
-    <a href="@Url.Action("Edit", new { id = Model.UsuarioId })" class="btn btn-primary">
-        <i class="fas fa-edit"></i> Edit
-    </a> |
+    @if (@Model.UsuarioId.ToString().Equals(Session["UsuarioId"]))
+    {
+        <a href="@Url.Action("Edit", new { id = Model.UsuarioId })" class="btn btn-primary">
+            <i class="fas fa-edit"></i> Edit
+        </a>
+    }
     <a href="@Url.Action("Index")" class="btn btn-secondary">
         <i class="fas fa-arrow-left"></i> Back to List
     </a>

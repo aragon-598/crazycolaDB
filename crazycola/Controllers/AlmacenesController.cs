@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,8 +18,12 @@ namespace crazycola.Controllers
         // GET: Almacenes
         public ActionResult Index()
         {
-            var almacen = db.Almacen.Include(a => a.Ciudad);
-            return View(almacen.ToList());
+            
+            var query = "select * from crazycola.dbo.Almacen a where a.AlmacenId = @param";
+            var userAlmacenId = int.Parse(Session["UAlmacenId"].ToString());
+            var listaAlmacenes = db.Almacen.SqlQuery(query, new SqlParameter("param", userAlmacenId));
+            //var almacen = db.Almacen.Include(a => a.Ciudad);
+            return View(listaAlmacenes.ToList());
         }
 
         // GET: Almacenes/Details/5
