@@ -17,12 +17,20 @@ namespace crazycola.Controllers
         // GET: Paises
         public ActionResult Index()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View(db.Pais.ToList());
         }
 
         // GET: Paises/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +46,10 @@ namespace crazycola.Controllers
         // GET: Paises/Create
         public ActionResult Create()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View();
         }
 
@@ -61,6 +73,10 @@ namespace crazycola.Controllers
         // GET: Paises/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -92,6 +108,10 @@ namespace crazycola.Controllers
         // GET: Paises/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

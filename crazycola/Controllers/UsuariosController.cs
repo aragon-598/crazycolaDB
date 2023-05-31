@@ -18,6 +18,10 @@ namespace crazycola.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var query = "select * from crazycola.dbo.Usuario u where u.AlmacenId = @param";
             var almacenId = int.Parse(Session["UAlmacenId"].ToString());
             var listaUsuarios = db.Usuario.SqlQuery(query, new SqlParameter("param", almacenId));
@@ -27,6 +31,10 @@ namespace crazycola.Controllers
         // GET: Usuarios/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -42,6 +50,10 @@ namespace crazycola.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             ViewBag.AlmacenId = new SelectList(db.Almacen, "AlmacenId", "Nombre");
             return View();
         }
@@ -67,6 +79,10 @@ namespace crazycola.Controllers
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -100,6 +116,10 @@ namespace crazycola.Controllers
         // GET: Usuarios/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

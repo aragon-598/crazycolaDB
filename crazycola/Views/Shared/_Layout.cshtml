@@ -26,6 +26,13 @@
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["UNombre"] != null)
+                    {
+                        <li><a href="#"><i class="fas fa-user"></i> @Session["UNombre"]</a></li>
+                        <li><a href="@Url.Action("Logout", "Login")"><i class="fas fa-sign-out-alt"></i></a></li>
+                    }
+                </ul>
             </div>
         </div>
     </div>

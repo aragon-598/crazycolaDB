@@ -41,5 +41,11 @@ namespace crazycola.Controllers
             Console.WriteLine("SIN ENTRAR AL IFFFFFFFFFFF");
             return View(objUser);
         }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return View();
+        }
     }
 }

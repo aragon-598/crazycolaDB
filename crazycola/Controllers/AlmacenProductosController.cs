@@ -18,6 +18,10 @@ namespace crazycola.Controllers
         // GET: AlmacenProductos
         public ActionResult Index()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var query = "select * from crazycola.dbo.AlmacenProducto ap where ap.AlmacenId = @param";
             var almacenId = int.Parse(Session["UAlmacenId"].ToString());
             //var almacenProducto = db.AlmacenProducto.Include(a => a.Almacen).Include(a => a.Producto);
@@ -28,6 +32,10 @@ namespace crazycola.Controllers
         // GET: AlmacenProductos/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -43,6 +51,10 @@ namespace crazycola.Controllers
         // GET: AlmacenProductos/Create
         public ActionResult Create()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             ViewBag.AlmacenId = new SelectList(db.Almacen, "AlmacenId", "Nombre");
             ViewBag.ProductoId = new SelectList(db.Producto, "ProductoId", "Nombre");
             return View();
@@ -70,6 +82,10 @@ namespace crazycola.Controllers
         // GET: AlmacenProductos/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -105,6 +121,10 @@ namespace crazycola.Controllers
         // GET: AlmacenProductos/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

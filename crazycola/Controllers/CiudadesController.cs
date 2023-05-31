@@ -17,6 +17,10 @@ namespace crazycola.Controllers
         // GET: Ciudades
         public ActionResult Index()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var ciudad = db.Ciudad.Include(c => c.Pais);
             return View(ciudad.ToList());
         }
@@ -24,6 +28,10 @@ namespace crazycola.Controllers
         // GET: Ciudades/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +47,10 @@ namespace crazycola.Controllers
         // GET: Ciudades/Create
         public ActionResult Create()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             ViewBag.PaisId = new SelectList(db.Pais, "PaisId", "Nombre");
             return View();
         }
@@ -64,6 +76,10 @@ namespace crazycola.Controllers
         // GET: Ciudades/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -97,6 +113,10 @@ namespace crazycola.Controllers
         // GET: Ciudades/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

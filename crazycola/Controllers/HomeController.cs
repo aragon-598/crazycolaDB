@@ -10,6 +10,10 @@ namespace crazycola.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             //string mensaje = "Hola desde ASP.NET";
             ViewBag.Mensaje = Session["UsuarioId"];
             return View();
@@ -17,6 +21,10 @@ namespace crazycola.Controllers
 
         public ActionResult About()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -24,6 +32,10 @@ namespace crazycola.Controllers
 
         public ActionResult Contact()
         {
+            if (Session["UsuarioId"]==null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             ViewBag.Message = "Your contact page.";
 
             return View();
