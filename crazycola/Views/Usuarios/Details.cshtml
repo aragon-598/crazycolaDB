@@ -39,7 +39,7 @@
 </div>
 
 <p>
-    @if (@Model.UsuarioId.ToString().Equals(Session["UsuarioId"]))
+    @if (@Model.UsuarioId.ToString().Equals(Session["UsuarioId"]) || Session["UAdmin"].Equals("True"))
     {
         <a href="@Url.Action("Edit", new { id = Model.UsuarioId })" class="btn btn-primary">
             <i class="fas fa-edit"></i> Edit

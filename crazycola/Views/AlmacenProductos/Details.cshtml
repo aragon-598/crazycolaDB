@@ -27,7 +27,7 @@
 </div>
 
 <p>
-     @if (@Session["UAdmin"] == "true")
+     @if (@Session["UAdmin"].Equals("True"))
      {
          <a href="@Url.Action("Edit", new { id = Model.AlmacenProductoId })" class="btn btn-primary">
              <i class="fas fa-edit"></i> Edit

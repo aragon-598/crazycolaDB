@@ -6,7 +6,7 @@
 }
 
 <h2>Index</h2>
- @if (@Session["UAdmin"] == "true")
+ @if (@Session["UAdmin"].Equals("True"))
  {
      <p>
          @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => item.Almacen.Nombre)
             </td>
             <td>
-                 @if (Session["UAdmin"] == "true" || Session["UsuarioId"].Equals(item.UsuarioId.ToString()))
+                 @if (Session["UAdmin"].Equals("True") || Session["UsuarioId"].Equals(item.UsuarioId.ToString()))
                  {
                      <a href="@Url.Action("Edit", new { id = item.UsuarioId })" class="btn btn-primary">
                          <i class="fas fa-edit"></i> Edit
@@ -55,7 +55,7 @@
                          <i class="fas fa-info-circle"></i> Details
                      </a>
                  }
-                 @if (@Session["UAdmin"] == "true")
+                 @if (@Session["UAdmin"].Equals("True"))
                  {
                      <a href="@Url.Action("Delete", new { id = item.UsuarioId })" class="btn btn-danger">
                          <i class="fas fa-trash-alt"></i> Delete

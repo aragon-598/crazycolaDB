@@ -6,7 +6,7 @@
 }
 
 <h2>Index</h2>
- @if (@Session["UAdmin"] == "true")
+ @if (@Session["UAdmin"].Equals( "True"))
  {
      <p>
          <a href="@Url.Action("Create")" class="btn btn-primary">
@@ -21,12 +21,12 @@
             @Html.DisplayNameFor(model => model.Stock)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Almacen.Nombre)
+            Almacen
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Producto.Nombre)
+            Producto
         </th>
-        <th></th>
+        <th>Actions</th>
     </tr>
 
     @foreach (var item in Model)
@@ -42,7 +42,7 @@
                 @Html.DisplayFor(modelItem => item.Producto.Nombre)
             </td>
             <td>
-                 @if (@Session["UAdmin"] == "true")
+                 @if (@Session["UAdmin"].Equals( "True"))
                  {
                      <a href="@Url.Action("Edit", new { id = item.AlmacenProductoId })" class="btn btn-primary">
                          <i class="fas fa-edit"></i> Edit
@@ -51,7 +51,7 @@
                  <a href="@Url.Action("Details", new { id = item.AlmacenProductoId })" class="btn btn-info">
                      <i class="fas fa-info-circle"></i> Details
                  </a>
-                  @if (@Session["UAdmin"] == "true")
+                  @if (@Session["UAdmin"].Equals( "True"))
                   {
                       <a href="@Url.Action("Delete", new { id = item.AlmacenProductoId })" class="btn btn-danger">
                           <i class="fas fa-trash-alt"></i> Delete

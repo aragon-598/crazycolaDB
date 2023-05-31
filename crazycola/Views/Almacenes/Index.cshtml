@@ -6,7 +6,7 @@
 }
 
 <h2>Almacenes</h2>
- @if (@Session["UAdmin"] == "true")
+ @if (@Session["UAdmin"].Equals( "True"))
  {
      <p>
          @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
@@ -39,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.Ciudad.Nombre)
             </td>
             <td>
-                @if (@Session["UAdmin"] == "true")
+                @if (@Session["UAdmin"].Equals( "True"))
                 {
                     <a href="@Url.Action("Edit", new { id = item.AlmacenId })" class="btn btn-primary">
                         <i class="fa fa-edit"></i> Edit
@@ -48,7 +48,7 @@
                 <a href="@Url.Action("Details", new { id = item.AlmacenId })" class="btn btn-info">
                     <i class="fa fa-eye"></i> Details
                 </a>
-                 @if (@Session["UAdmin"] == "true")
+                 @if (@Session["UAdmin"].Equals( "True"))
                  {
                      <a href="@Url.Action("Delete", new { id = item.AlmacenId })" class="btn btn-danger">
                          <i class="fa fa-trash"></i> Delete
