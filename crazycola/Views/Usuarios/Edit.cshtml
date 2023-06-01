@@ -46,25 +46,26 @@
                 <div class="form-group row">
                     @Html.LabelFor(model => model.Contrasenia, htmlAttributes: new { @class = "col-md-2 col-form-label" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Contrasenia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Contrasenia, new { htmlAttributes = new { @class = "form-control", type = "password" } })
                         @Html.ValidationMessageFor(model => model.Contrasenia, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "col-md-2 col-form-label" })
-                    <div class="col-md-10">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                @Html.EditorFor(model => model.IsAdmin, new { htmlAttributes = new { @class = "form-check-input" } })
-                                @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
-                                Is Admin
-                            </label>
-                        </div>
-                    </div>
-                </div>
                 @if (Session["UAdmin"].Equals("True"))
                 {
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    @Html.EditorFor(model => model.IsAdmin, new { htmlAttributes = new { @class = "form-check-input" } })
+                                    @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+                                    Is Admin
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         @Html.LabelFor(model => model.AlmacenId, "AlmacenId", htmlAttributes: new { @class = "col-md-2 col-form-label" })
                         <div class="col-md-10">
@@ -72,6 +73,7 @@
                             @Html.ValidationMessageFor(model => model.AlmacenId, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                }
 
                     <div class="form-group row">
                         <div class="col-md-offset-2 col-md-10">
@@ -80,8 +82,7 @@
                             </button>
                         </div>
                     </div>
-                }
-            </div>
+                    </div>
         </div>
     </div>
 }
