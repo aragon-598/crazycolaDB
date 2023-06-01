@@ -28,34 +28,37 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ciudad.Nombre)
-            </td>
-            <td>
-                @if (@Session["UAdmin"].Equals( "True"))
-                {
-                    <a href="@Url.Action("Edit", new { id = item.AlmacenId })" class="btn btn-primary">
-                        <i class="fa fa-edit"></i> Edit
+        if (item.Ciudad.Pais.PaisId.ToString().Equals(Session["UPaisId"]))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ciudad.Nombre)
+                </td>
+                <td>
+                    @if (@Session["UAdmin"].Equals("True"))
+                    {
+                        <a href="@Url.Action("Edit", new { id = item.AlmacenId })" class="btn btn-primary">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
+                    }
+                    <a href="@Url.Action("Details", new { id = item.AlmacenId })" class="btn btn-info">
+                        <i class="fa fa-eye"></i> Details
                     </a>
-                }
-                <a href="@Url.Action("Details", new { id = item.AlmacenId })" class="btn btn-info">
-                    <i class="fa fa-eye"></i> Details
-                </a>
-                 @if (@Session["UAdmin"].Equals( "True"))
-                 {
-                     <a href="@Url.Action("Delete", new { id = item.AlmacenId })" class="btn btn-danger">
-                         <i class="fa fa-trash"></i> Delete
-                     </a>
-                 }
-            </td>
-        </tr>
+                    @if (@Session["UAdmin"].Equals("True"))
+                    {
+                        <a href="@Url.Action("Delete", new { id = item.AlmacenId })" class="btn btn-danger">
+                            <i class="fa fa-trash"></i> Delete
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
     }
 
 </table>

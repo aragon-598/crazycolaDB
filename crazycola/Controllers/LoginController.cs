@@ -39,6 +39,7 @@ namespace crazycola.Controllers
                         Session["UNombre"] = obj.Nombre.ToString();
                         Session["UApellido"] = obj.Apellido.ToString();
                         Session["UAlmacenId"] = obj.Almacen.AlmacenId.ToString();
+                        Session["UPaisId"] = obj.Almacen.Ciudad.Pais.PaisId.ToString();
                         Session["UAdmin"] = obj.IsAdmin.ToString();
                         return RedirectToAction("Index","Home");
                     }

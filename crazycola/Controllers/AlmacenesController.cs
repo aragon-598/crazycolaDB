@@ -22,10 +22,10 @@ namespace crazycola.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-            var query = "select * from crazycola.dbo.Almacen a where a.AlmacenId = @param";
-            var userAlmacenId = int.Parse(Session["UAlmacenId"].ToString());
-            var listaAlmacenes = db.Almacen.SqlQuery(query, new SqlParameter("param", userAlmacenId));
-            //var almacen = db.Almacen.Include(a => a.Ciudad);
+            // var query = "select * from crazycola.dbo.Almacen a where a.AlmacenId = @param";
+            // var userAlmacenId = int.Parse(Session["UAlmacenId"].ToString());
+            // var listaAlmacenes = db.Almacen.SqlQuery(query, new SqlParameter("param", userAlmacenId));
+            var listaAlmacenes = db.Almacen.Include(a => a.Ciudad);
             return View(listaAlmacenes.ToList());
         }
 
