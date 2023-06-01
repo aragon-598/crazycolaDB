@@ -1,17 +1,27 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+ViewBag.Title = "Contacto";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div class="container">
+<div class="row">
+    <div class="row">
+        <h2>@ViewBag.Title.</h2>
+        <h3>@ViewBag.Message</h3>        
+        <address>
+            <p>
+                <strong>Departamento de Soporte:</strong>   <a href="mailto:soporte@crazycola.com">soporte@crazycola.com</a><br />
+                <strong>Departamento de Marketing:</strong> <a href="mailto:marketing@crazycola.com">marketing@crazycola.com</a>
+            </p>
+        </address>
+    </div>
+    <div class="row">
+        <address>
+            <p>
+                <i class="fas fa-map-marker-alt"></i> One CrazyCola Way<br />
+                <i class="fas fa-globe"></i> Ciudad CrazyCola, País<br />
+                <i class="fas fa-phone"></i> +1 123 456 7890
+            </p>
+        </address>
+    </div>
+</div>
+</div>
